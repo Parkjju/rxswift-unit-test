@@ -14,6 +14,10 @@
 		C95904D22B15C86000943FCE /* metronomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95904D12B15C86000943FCE /* metronomeTests.swift */; };
 		C95904DC2B15C86000943FCE /* metronomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95904DB2B15C86000943FCE /* metronomeUITests.swift */; };
 		C95904DE2B15C86000943FCE /* metronomeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95904DD2B15C86000943FCE /* metronomeUITestsLaunchTests.swift */; };
+		C95904F12B15CC3300943FCE /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = C95904EC2B15CC3300943FCE /* click.wav */; };
+		C95904F22B15CC3300943FCE /* accent.wav in Resources */ = {isa = PBXBuildFile; fileRef = C95904ED2B15CC3300943FCE /* accent.wav */; };
+		C95904F32B15CC3300943FCE /* Metronome.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C95904EF2B15CC3300943FCE /* Metronome.xcassets */; };
+		C95904F42B15CC3300943FCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C95904F02B15CC3300943FCE /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,10 @@
 		C95904D72B15C86000943FCE /* metronomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = metronomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95904DB2B15C86000943FCE /* metronomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = metronomeUITests.swift; sourceTree = "<group>"; };
 		C95904DD2B15C86000943FCE /* metronomeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = metronomeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C95904EC2B15CC3300943FCE /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
+		C95904ED2B15CC3300943FCE /* accent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = accent.wav; sourceTree = "<group>"; };
+		C95904EF2B15CC3300943FCE /* Metronome.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Metronome.xcassets; sourceTree = "<group>"; };
+		C95904F02B15CC3300943FCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +103,11 @@
 		C95904B92B15C85F00943FCE /* metronome */ = {
 			isa = PBXGroup;
 			children = (
-				C95904BA2B15C85F00943FCE /* AppDelegate.swift */,
-				C95904BE2B15C85F00943FCE /* ViewController.swift */,
-				C95904C32B15C86000943FCE /* Assets.xcassets */,
+				C95904F92B15CC7700943FCE /* Application */,
+				C95904F72B15CC5C00943FCE /* Extensions */,
+				C95904F62B15CC5700943FCE /* Models */,
+				C95904F52B15CC3E00943FCE /* Modules */,
+				C95904EA2B15CC2700943FCE /* Resources */,
 				C95904C52B15C86000943FCE /* LaunchScreen.storyboard */,
 				C95904C82B15C86000943FCE /* Info.plist */,
 			);
@@ -119,6 +129,64 @@
 				C95904DD2B15C86000943FCE /* metronomeUITestsLaunchTests.swift */,
 			);
 			path = metronomeUITests;
+			sourceTree = "<group>";
+		};
+		C95904EA2B15CC2700943FCE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C95904C32B15C86000943FCE /* Assets.xcassets */,
+				C95904EE2B15CC3300943FCE /* Assets */,
+				C95904EB2B15CC3300943FCE /* Audio */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C95904EB2B15CC3300943FCE /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				C95904EC2B15CC3300943FCE /* click.wav */,
+				C95904ED2B15CC3300943FCE /* accent.wav */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		C95904EE2B15CC3300943FCE /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C95904EF2B15CC3300943FCE /* Metronome.xcassets */,
+				C95904F02B15CC3300943FCE /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		C95904F52B15CC3E00943FCE /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C95904BE2B15C85F00943FCE /* ViewController.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C95904F62B15CC5700943FCE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C95904F72B15CC5C00943FCE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C95904F92B15CC7700943FCE /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C95904BA2B15C85F00943FCE /* AppDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,7 +293,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C95904F22B15CC3300943FCE /* accent.wav in Resources */,
+				C95904F32B15CC3300943FCE /* Metronome.xcassets in Resources */,
+				C95904F12B15CC3300943FCE /* click.wav in Resources */,
 				C95904C72B15C86000943FCE /* LaunchScreen.storyboard in Resources */,
+				C95904F42B15CC3300943FCE /* Assets.xcassets in Resources */,
 				C95904C42B15C86000943FCE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
