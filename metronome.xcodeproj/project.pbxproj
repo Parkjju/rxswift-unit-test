@@ -20,6 +20,11 @@
 		C95904F42B15CC3300943FCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C95904F02B15CC3300943FCE /* Assets.xcassets */; };
 		C9E6025E2B1707120098BC96 /* MetronomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6025D2B1707120098BC96 /* MetronomeViewModel.swift */; };
 		C9E602622B1709750098BC96 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C9E602612B1709750098BC96 /* Then */; };
+		C9E602652B170B0E0098BC96 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = C9E602642B170B0E0098BC96 /* RxCocoa */; };
+		C9E602672B170B0E0098BC96 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = C9E602662B170B0E0098BC96 /* RxRelay */; };
+		C9E602692B170B0E0098BC96 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C9E602682B170B0E0098BC96 /* RxSwift */; };
+		C9E6026B2B170B100098BC96 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C9E6026A2B170B100098BC96 /* SnapKit */; };
+		C9E6026E2B170B6C0098BC96 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6026D2B170B6C0098BC96 /* UIView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,7 @@
 		C95904EF2B15CC3300943FCE /* Metronome.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Metronome.xcassets; sourceTree = "<group>"; };
 		C95904F02B15CC3300943FCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9E6025D2B1707120098BC96 /* MetronomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeViewModel.swift; sourceTree = "<group>"; };
+		C9E6026D2B170B6C0098BC96 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +69,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9E602672B170B0E0098BC96 /* RxRelay in Frameworks */,
+				C9E602652B170B0E0098BC96 /* RxCocoa in Frameworks */,
+				C9E602692B170B0E0098BC96 /* RxSwift in Frameworks */,
 				C9E602622B1709750098BC96 /* Then in Frameworks */,
+				C9E6026B2B170B100098BC96 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +101,7 @@
 				C95904D02B15C86000943FCE /* metronomeTests */,
 				C95904DA2B15C86000943FCE /* metronomeUITests */,
 				C95904B82B15C85F00943FCE /* Products */,
+				C9E602632B170B0E0098BC96 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,6 +192,7 @@
 		C95904F72B15CC5C00943FCE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C9E6026C2B170B5F0098BC96 /* UIView */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -202,6 +214,21 @@
 			path = Metronome;
 			sourceTree = "<group>";
 		};
+		C9E602632B170B0E0098BC96 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9E6026C2B170B5F0098BC96 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				C9E6026D2B170B6C0098BC96 /* UIView+.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -220,6 +247,10 @@
 			name = metronome;
 			packageProductDependencies = (
 				C9E602612B1709750098BC96 /* Then */,
+				C9E602642B170B0E0098BC96 /* RxCocoa */,
+				C9E602662B170B0E0098BC96 /* RxRelay */,
+				C9E602682B170B0E0098BC96 /* RxSwift */,
+				C9E6026A2B170B100098BC96 /* SnapKit */,
 			);
 			productName = metronome;
 			productReference = C95904B72B15C85F00943FCE /* metronome.app */;
@@ -344,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9E6026E2B170B6C0098BC96 /* UIView+.swift in Sources */,
 				C9E6025E2B1707120098BC96 /* MetronomeViewModel.swift in Sources */,
 				C95904BF2B15C85F00943FCE /* MetronomeViewController.swift in Sources */,
 				C95904BB2B15C85F00943FCE /* AppDelegate.swift in Sources */,
@@ -716,6 +748,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C9E602602B1709750098BC96 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		C9E602642B170B0E0098BC96 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9E6025B2B1706530098BC96 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		C9E602662B170B0E0098BC96 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9E6025B2B1706530098BC96 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		C9E602682B170B0E0098BC96 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9E6025B2B1706530098BC96 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		C9E6026A2B170B100098BC96 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9E6025F2B1709580098BC96 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
