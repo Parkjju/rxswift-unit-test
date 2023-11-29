@@ -20,7 +20,7 @@ class MetronomeViewModel {
     }
 
     struct Input {
-        
+        var controlButtonTapped: Observable<Void>
     }
     
     struct Output {
@@ -28,6 +28,7 @@ class MetronomeViewModel {
         let denomitorText: Driver<String>
         let beatType: Driver<BeatType>
         let tempo: Driver<Float>
+        let isPlaying: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
@@ -35,7 +36,15 @@ class MetronomeViewModel {
         let denomitorText = BehaviorRelay<String>(value: "4")
         let beatType = BehaviorRelay<BeatType>(value: .center)
         let tempo = BehaviorRelay<Float>(value: 120)
+        let isPlaying = BehaviorRelay<Bool>(value: false)
         
-        return Output(numeratorText: numeratorText.asDriver(), denomitorText: denomitorText.asDriver(), beatType: beatType.asDriver(), tempo: tempo.asDriver())
+        /// 1. 메트로놈 플레이버튼 탭 이벤트
+        input.controlButtonTapped
+            .subscribe(onNext: {
+                isPlaying.accept(!isPlaying.value)
+            })
+            .disposed(by: disposeBag)
+        
+        return Output(numeratorText: numeratorText.asDriver(), denomitorText: denomitorText.asDriver(), beatType: beatType.asDriver(), tempo: tempo.asDriver(), isPlaying: isPlaying.asDriver())
     }
 }
