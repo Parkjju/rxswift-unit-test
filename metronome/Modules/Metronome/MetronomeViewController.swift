@@ -128,16 +128,6 @@ class MetronomeViewController: UIViewController {
     var disposeBag = DisposeBag()
     var viewModel: MetronomeViewModel
     
-    var beatType = BehaviorRelay<BeatType>(value: .center)
-    var denomitorText = BehaviorRelay<Int>(value: 4)
-    var numeratorText = BehaviorRelay<Int>(value: 4)
-    
-    enum BeatType: String {
-        case left = "MetronomeLeft"
-        case right = "MetronomeRight"
-        case center = "MetronomeCenter"
-    }
-
     // MARK: - Functions
     func render() {
         view.addSubViews([box, metronomeImageView, signatureContainer, numeratorLabel, denomitorLabel, numeratorStepper, denomitorStepper, signatureTitle, fieldContainer, signatureLabel, tempoTitle, slider, bpmContainer, bpmLabel, controlButton])
@@ -232,8 +222,32 @@ class MetronomeViewController: UIViewController {
         let input = MetronomeViewModel.Input()
         let output = viewModel.transform(input: input)
         
+        // signature binding
         output.numeratorText.asObservable().bind(to: numeratorLabel.rx.text).disposed(by: disposeBag)
         output.denomitorText.asObservable().bind(to: denomitorLabel.rx.text).disposed(by: disposeBag)
+        
+        // 메트로놈 타입 바인딩
+        output.beatType
+            .drive(onNext: { [unowned self] in
+                switch $0 {
+                case .left:
+                    self.metronomeImageView.image = UIImage(named: "MetronomeLeft")
+                case .center:
+                    self.metronomeImageView.image = UIImage(named: "MetronomeCenter")
+                case .right:
+                    self.metronomeImageView.image = UIImage(named: "MetronomeRight")
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        // 템포 바인딩
+        output.tempo.asObservable().map { "\(Int($0)) BPM"}.bind(to: bpmLabel.rx.text).disposed(by: disposeBag)
+        
+        // 템포 슬라이더 바인딩
+        output.tempo.map { Float($0) }.drive(onNext: { [unowned self] in
+            self.slider.value = $0
+        })
+        .disposed(by: disposeBag)
     }
 }
 
