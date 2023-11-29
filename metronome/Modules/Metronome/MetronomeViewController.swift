@@ -229,8 +229,11 @@ class MetronomeViewController: UIViewController {
     }
     
     func bindViewModel(){
-        numeratorText.map { String($0) }.bind(to: numeratorLabel.rx.text).disposed(by: disposeBag)
-        denomitorText.map { String($0) }.bind(to: denomitorLabel.rx.text).disposed(by: disposeBag)
+        let input = MetronomeViewModel.Input()
+        let output = viewModel.transform(input: input)
+        
+        output.numeratorText.asObservable().bind(to: numeratorLabel.rx.text).disposed(by: disposeBag)
+        output.denomitorText.asObservable().bind(to: denomitorLabel.rx.text).disposed(by: disposeBag)
     }
 }
 

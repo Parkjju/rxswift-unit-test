@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 
 class MetronomeViewModel {
     struct Input {
@@ -13,10 +15,14 @@ class MetronomeViewModel {
     }
     
     struct Output {
-        
+        let numeratorText: Driver<String>
+        let denomitorText: Driver<String>
     }
     
     func transform(input: Input) -> Output {
-        return Output()
+        let numeratorText = BehaviorRelay<String>(value: "4")
+        let denomitorText = BehaviorRelay<String>(value: "4")
+        
+        return Output(numeratorText: numeratorText.asDriver(), denomitorText: denomitorText.asDriver())
     }
 }
