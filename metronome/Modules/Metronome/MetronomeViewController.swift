@@ -68,10 +68,41 @@ class MetronomeViewController: UIViewController {
     
     let signatureLabel = UILabel()
         .then {
+            $0.textAlignment = .center
             $0.text = "4/4"
             $0.textColor = .systemGreen
             $0.font = .systemFont(ofSize: 12, weight: .heavy)
         }
+    
+    let tempoTitle = UILabel()
+        .then {
+            $0.text = "Tempo"
+            $0.font = .systemFont(ofSize: 16, weight: .medium)
+        }
+    
+    let slider = UISlider()
+        .then {
+            $0.value = 120
+            $0.minimumValue = 60
+            $0.maximumValue = 180
+            $0.tintColor = .systemGreen
+        }
+    
+    let bpmContainer = UIImageView(image: UIImage(named: "FieldContainer"))
+    
+    let bpmLabel = UILabel()
+        .then {
+            $0.textAlignment = .center
+            $0.text = "120 BPM"
+            $0.font = .systemFont(ofSize: 12, weight: .heavy)
+            $0.textColor = .systemGreen
+        }
+    
+    let controlButton = UIButton(type: .system)
+        .then {
+            $0.setImage(UIImage(named: "BtnPlay")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+    
     
     // MARK: - Initialization
     init(viewModel: MetronomeViewModel) {
@@ -109,7 +140,7 @@ class MetronomeViewController: UIViewController {
 
     // MARK: - Functions
     func render() {
-        view.addSubViews([box, metronomeImageView, signatureContainer, numeratorLabel, denomitorLabel, numeratorStepper, denomitorStepper, signatureTitle, fieldContainer, signatureLabel])
+        view.addSubViews([box, metronomeImageView, signatureContainer, numeratorLabel, denomitorLabel, numeratorStepper, denomitorStepper, signatureTitle, fieldContainer, signatureLabel, tempoTitle, slider, bpmContainer, bpmLabel, controlButton])
         
         box.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(100)
@@ -160,10 +191,36 @@ class MetronomeViewController: UIViewController {
             make.leading.equalTo(numeratorStepper).offset(15)
             make.trailing.equalTo(denomitorStepper).offset(-15)
             make.top.equalTo(signatureTitle.snp.bottom).offset(16)
+            make.height.equalTo(40)
         }
         
         signatureLabel.snp.makeConstraints { make in
             make.center.equalTo(fieldContainer)
+        }
+        
+        tempoTitle.snp.makeConstraints { make in
+            make.top.equalTo(fieldContainer.snp.bottom).offset(16)
+            make.centerX.equalTo(box)
+        }
+        
+        slider.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(box).inset(20)
+            make.top.equalTo(tempoTitle.snp.bottom).offset(8)
+        }
+        
+        bpmContainer.snp.makeConstraints { make in
+            make.top.equalTo(slider.snp.bottom).offset(12)
+            make.leading.trailing.equalTo(fieldContainer)
+            make.height.equalTo(40)
+        }
+        
+        bpmLabel.snp.makeConstraints { make in
+            make.center.equalTo(bpmContainer)
+        }
+        
+        controlButton.snp.makeConstraints { make in
+            make.centerY.equalTo(box.snp.bottom)
+            make.centerX.equalTo(box)
         }
     }
     
