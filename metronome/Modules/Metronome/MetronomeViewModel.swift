@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+class MetronomeViewModel {
+    struct Input {
+        
+    }
+    
+    struct Output {
+        
+    }
+    
+    func transform(input: Input) -> Output {
+        return Output()
+    }
+}
