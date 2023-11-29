@@ -42,6 +42,37 @@ class MetronomeViewController: UIViewController {
             $0.textAlignment = .center
         }
     
+    let numeratorStepper = UIStepper()
+        .then {
+            $0.minimumValue = 1
+            $0.stepValue = 1
+            $0.maximumValue = 4
+            $0.value = 4
+        }
+    
+    let denomitorStepper = UIStepper()
+        .then {
+            $0.maximumValue = 4
+            $0.minimumValue = 1
+            $0.stepValue = 1
+            $0.value = 1
+        }
+    
+    let signatureTitle = UILabel()
+        .then {
+            $0.font = .systemFont(ofSize: 16, weight: .medium)
+            $0.text = "Signature"
+        }
+    
+    let fieldContainer = UIImageView(image: UIImage(named: "FieldContainer"))
+    
+    let signatureLabel = UILabel()
+        .then {
+            $0.text = "4/4"
+            $0.textColor = .systemGreen
+            $0.font = .systemFont(ofSize: 12, weight: .heavy)
+        }
+    
     // MARK: - Initialization
     init(viewModel: MetronomeViewModel) {
         self.viewModel = viewModel
@@ -78,7 +109,7 @@ class MetronomeViewController: UIViewController {
 
     // MARK: - Functions
     func render() {
-        view.addSubViews([box, metronomeImageView, signatureContainer, numeratorLabel, denomitorLabel])
+        view.addSubViews([box, metronomeImageView, signatureContainer, numeratorLabel, denomitorLabel, numeratorStepper, denomitorStepper, signatureTitle, fieldContainer, signatureLabel])
         
         box.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(100)
@@ -106,6 +137,33 @@ class MetronomeViewController: UIViewController {
             make.centerY.equalTo(signatureContainer)
             make.trailing.equalTo(signatureContainer).offset(-16)
             make.leading.equalTo(signatureContainer.snp.centerX)
+        }
+        
+        numeratorStepper.snp.makeConstraints { make in
+            make.top.equalTo(signatureContainer.snp.bottom).offset(8)
+            make.leading.equalTo(signatureContainer).offset(4)
+            make.trailing.equalTo(signatureContainer.snp.centerX).offset(-4)
+        }
+        
+        denomitorStepper.snp.makeConstraints { make in
+            make.top.equalTo(signatureContainer.snp.bottom).offset(8)
+            make.trailing.equalTo(signatureContainer).offset(-4)
+            make.leading.equalTo(signatureContainer.snp.centerX).offset(4)
+        }
+        
+        signatureTitle.snp.makeConstraints { make in
+            make.centerX.equalTo(box)
+            make.top.equalTo(denomitorStepper.snp.bottom).offset(15)
+        }
+        
+        fieldContainer.snp.makeConstraints { make in
+            make.leading.equalTo(numeratorStepper).offset(15)
+            make.trailing.equalTo(denomitorStepper).offset(-15)
+            make.top.equalTo(signatureTitle.snp.bottom).offset(16)
+        }
+        
+        signatureLabel.snp.makeConstraints { make in
+            make.center.equalTo(fieldContainer)
         }
     }
     
