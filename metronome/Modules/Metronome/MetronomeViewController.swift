@@ -219,7 +219,7 @@ class MetronomeViewController: UIViewController {
     }
     
     func bindViewModel(){
-        let input = MetronomeViewModel.Input()
+        let input = MetronomeViewModel.Input(controlButtonTapped: controlButton.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         
         // signature binding
