@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		882C65492B176C5E00F6485F /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 882C65482B176C5E00F6485F /* RxBlocking */; };
+		882C654B2B176C5E00F6485F /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 882C654A2B176C5E00F6485F /* RxCocoa */; };
+		882C654D2B176C5E00F6485F /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 882C654C2B176C5E00F6485F /* RxRelay */; };
+		882C654F2B176C5E00F6485F /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 882C654E2B176C5E00F6485F /* RxSwift */; };
+		882C65512B176C5E00F6485F /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 882C65502B176C5E00F6485F /* RxTest */; };
+		882C65522B176D0100F6485F /* MetronomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6025D2B1707120098BC96 /* MetronomeViewModel.swift */; };
 		C95904BB2B15C85F00943FCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95904BA2B15C85F00943FCE /* AppDelegate.swift */; };
 		C95904BF2B15C85F00943FCE /* MetronomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95904BE2B15C85F00943FCE /* MetronomeViewController.swift */; };
 		C95904C42B15C86000943FCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C95904C32B15C86000943FCE /* Assets.xcassets */; };
@@ -81,6 +87,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				882C65512B176C5E00F6485F /* RxTest in Frameworks */,
+				882C654D2B176C5E00F6485F /* RxRelay in Frameworks */,
+				882C654B2B176C5E00F6485F /* RxCocoa in Frameworks */,
+				882C654F2B176C5E00F6485F /* RxSwift in Frameworks */,
+				882C65492B176C5E00F6485F /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +281,13 @@
 				C95904CF2B15C86000943FCE /* PBXTargetDependency */,
 			);
 			name = metronomeTests;
+			packageProductDependencies = (
+				882C65482B176C5E00F6485F /* RxBlocking */,
+				882C654A2B176C5E00F6485F /* RxCocoa */,
+				882C654C2B176C5E00F6485F /* RxRelay */,
+				882C654E2B176C5E00F6485F /* RxSwift */,
+				882C65502B176C5E00F6485F /* RxTest */,
+			);
 			productName = metronomeTests;
 			productReference = C95904CD2B15C86000943FCE /* metronomeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -387,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C95904D22B15C86000943FCE /* metronomeTests.swift in Sources */,
+				882C65522B176D0100F6485F /* MetronomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +497,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -535,7 +554,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -559,6 +578,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -586,6 +606,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -608,7 +629,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5JQS3FU5R6;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parkjju.metronomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -628,7 +649,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5JQS3FU5R6;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.parkjju.metronomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -744,6 +765,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		882C65482B176C5E00F6485F /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9E6025B2B1706530098BC96 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		882C654A2B176C5E00F6485F /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9E6025B2B1706530098BC96 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		882C654C2B176C5E00F6485F /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9E6025B2B1706530098BC96 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		882C654E2B176C5E00F6485F /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9E6025B2B1706530098BC96 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		882C65502B176C5E00F6485F /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9E6025B2B1706530098BC96 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
 		C9E602612B1709750098BC96 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C9E602602B1709750098BC96 /* XCRemoteSwiftPackageReference "Then" */;
