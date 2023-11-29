@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C95904BB2B15C85F00943FCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95904BA2B15C85F00943FCE /* AppDelegate.swift */; };
-		C95904BF2B15C85F00943FCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95904BE2B15C85F00943FCE /* ViewController.swift */; };
+		C95904BF2B15C85F00943FCE /* MetronomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95904BE2B15C85F00943FCE /* MetronomeViewController.swift */; };
 		C95904C42B15C86000943FCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C95904C32B15C86000943FCE /* Assets.xcassets */; };
 		C95904C72B15C86000943FCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C95904C52B15C86000943FCE /* LaunchScreen.storyboard */; };
 		C95904D22B15C86000943FCE /* metronomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95904D12B15C86000943FCE /* metronomeTests.swift */; };
@@ -18,6 +18,7 @@
 		C95904F22B15CC3300943FCE /* accent.wav in Resources */ = {isa = PBXBuildFile; fileRef = C95904ED2B15CC3300943FCE /* accent.wav */; };
 		C95904F32B15CC3300943FCE /* Metronome.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C95904EF2B15CC3300943FCE /* Metronome.xcassets */; };
 		C95904F42B15CC3300943FCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C95904F02B15CC3300943FCE /* Assets.xcassets */; };
+		C9E6025E2B1707120098BC96 /* MetronomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6025D2B1707120098BC96 /* MetronomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +41,7 @@
 /* Begin PBXFileReference section */
 		C95904B72B15C85F00943FCE /* metronome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = metronome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95904BA2B15C85F00943FCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C95904BE2B15C85F00943FCE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C95904BE2B15C85F00943FCE /* MetronomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeViewController.swift; sourceTree = "<group>"; };
 		C95904C32B15C86000943FCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C95904C62B15C86000943FCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C95904C82B15C86000943FCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		C95904ED2B15CC3300943FCE /* accent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = accent.wav; sourceTree = "<group>"; };
 		C95904EF2B15CC3300943FCE /* Metronome.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Metronome.xcassets; sourceTree = "<group>"; };
 		C95904F02B15CC3300943FCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C9E6025D2B1707120098BC96 /* MetronomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +164,7 @@
 		C95904F52B15CC3E00943FCE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				C95904BE2B15C85F00943FCE /* ViewController.swift */,
+				C9E6025C2B1706FF0098BC96 /* Metronome */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -187,6 +189,15 @@
 				C95904BA2B15C85F00943FCE /* AppDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		C9E6025C2B1706FF0098BC96 /* Metronome */ = {
+			isa = PBXGroup;
+			children = (
+				C95904BE2B15C85F00943FCE /* MetronomeViewController.swift */,
+				C9E6025D2B1707120098BC96 /* MetronomeViewModel.swift */,
+			);
+			path = Metronome;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +288,9 @@
 				Base,
 			);
 			mainGroup = C95904AE2B15C85F00943FCE;
+			packageReferences = (
+				C9E6025B2B1706530098BC96 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = C95904B82B15C85F00943FCE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -323,7 +337,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C95904BF2B15C85F00943FCE /* ViewController.swift in Sources */,
+				C9E6025E2B1707120098BC96 /* MetronomeViewModel.swift in Sources */,
+				C95904BF2B15C85F00943FCE /* MetronomeViewController.swift in Sources */,
 				C95904BB2B15C85F00943FCE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -661,6 +676,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C9E6025B2B1706530098BC96 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = C95904AF2B15C85F00943FCE /* Project object */;
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MetronomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
