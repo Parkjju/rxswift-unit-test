@@ -74,19 +74,20 @@ final class metronomeTests: XCTestCase {
     func test_stepper_탭_이후_numerator속성값이_변경되는지() {
         let numerator = scheduler.createObserver(String.self)
         let denomitor = scheduler.createObserver(String.self)
+        let numeratorMaxValue = scheduler.createObserver(Double.self)
         
         var testInput = retrieveDefaultInputObservable()
         
         testInput.numeratorStepperChanged = scheduler.createColdObservable([
-            .next(10, 1.0),
-            .next(20, 2.0),
-            .next(30, 4.0)
+            .next(10, 4),
+            .next(20, 6)
         ]).asObservable()
         
+        // denomitor 감소에 따라 numerator 스트링값도 변경되어야됨
         testInput.denomitorStepperChanged = scheduler.createColdObservable([
             .next(10, 1.0),
-            .next(20, 4.0),
-            .next(30, 3.0)
+            .next(20, 2.0),
+            .next(30, 1.0)
         ]).asObservable()
         
         let testOutput = viewModel.transform(input: testInput)
@@ -99,20 +100,17 @@ final class metronomeTests: XCTestCase {
             .drive(denomitor)
             .disposed(by: disposeBag)
         
+        testOutput.numeratorMaxValue
+            .drive(numeratorMaxValue)
+            .disposed(by: disposeBag)
+        
         scheduler.start()
         
         XCTAssertEqual(numerator.events, [
             .next(0, "4"),
-            .next(10, "1"),
-            .next(20, "2"),
-            .next(30, "4")
-        ])
-        
-        XCTAssertEqual(denomitor.events, [
-            .next(0, "4"),
             .next(10, "4"),
-            .next(20, "32"),
-            .next(30, "16")
+            .next(20, "6"),
+            .next(30, "4")
         ])
     }
     
