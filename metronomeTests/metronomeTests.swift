@@ -110,9 +110,36 @@ final class metronomeTests: XCTestCase {
         
         XCTAssertEqual(denomitor.events, [
             .next(0, "4"),
-            .next(10, "1"),
-            .next(20, "4"),
-            .next(30, "3")
+            .next(10, "4"),
+            .next(20, "32"),
+            .next(30, "16")
+        ])
+    }
+    
+    func test_tempo슬라이더_조정이후_BPM텍스트가_변경되는지() {
+        let bpm = scheduler.createObserver(Float.self)
+        
+        var testInput = retrieveDefaultInputObservable()
+        
+        testInput.sliderValueChanged = scheduler.createColdObservable([
+            .next(10, Float(122)),
+            .next(20, Float(123)),
+            .next(30, Float(124))
+        ]).asObservable()
+        
+        let testOutput = viewModel.transform(input: testInput)
+        
+        testOutput.tempo
+            .drive(bpm)
+            .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(bpm.events, [
+            .next(0, Float(120)),
+            .next(10, Float(122)),
+            .next(20, Float(123)),
+            .next(30, Float(124)),
         ])
     }
     
@@ -124,7 +151,8 @@ final class metronomeTests: XCTestCase {
         let controlButton = scheduler.createColdObservable([.next(10, ())])
         let numeratorChanged = scheduler.createColdObservable([.next(10, Double(1))])
         let denomitorChanged = scheduler.createColdObservable([.next(10, Double(1))])
+        let sliderChanged = scheduler.createColdObservable([.next(10, Float(122))])
         
-        return MetronomeViewModel.Input(controlButtonTapped: controlButton.asObservable(), numeratorStepperChanged: numeratorChanged.asObservable(), denomitorStepperChanged: denomitorChanged.asObservable())
+        return MetronomeViewModel.Input(controlButtonTapped: controlButton.asObservable(), numeratorStepperChanged: numeratorChanged.asObservable(), denomitorStepperChanged: denomitorChanged.asObservable(), sliderValueChanged: sliderChanged.asObservable())
     }
 }
