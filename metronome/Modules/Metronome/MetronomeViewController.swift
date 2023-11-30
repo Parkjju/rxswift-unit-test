@@ -251,6 +251,9 @@ class MetronomeViewController: UIViewController {
         
         // denomitor 변경에 따른 numerator 맥스값 바인딩
         output.numeratorMaxValue.asObservable().bind(to: numeratorStepper.rx.maximumValue).disposed(by: disposeBag)
+        
+        // 시그니처 바인딩
+        output.signatureText.asObservable().bind(to: signatureLabel.rx.text).disposed(by: disposeBag)
     }
 }
 

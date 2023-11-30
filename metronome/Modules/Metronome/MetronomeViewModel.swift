@@ -33,6 +33,7 @@ class MetronomeViewModel {
         let beatType: Driver<BeatType>
         let tempo: Driver<Float>
         let isPlaying: Driver<Bool>
+        let signatureText: Driver<String>
     }
     
     func transform(input: Input) -> Output {
@@ -42,6 +43,7 @@ class MetronomeViewModel {
         let tempo = BehaviorRelay<Float>(value: 120)
         let isPlaying = BehaviorRelay<Bool>(value: false)
         let numeratorMaxValue = BehaviorRelay<Double>(value: 4)
+        let signatureText = BehaviorRelay<String>(value: "4/4")
         
         /// 1. 메트로놈 플레이버튼 탭 이벤트
         input.controlButtonTapped
@@ -80,6 +82,14 @@ class MetronomeViewModel {
             })
             .disposed(by: disposeBag)
         
-        return Output(numeratorText: numeratorText.asDriver(), denomitorText: denomitorText.asDriver(), numeratorMaxValue: numeratorMaxValue.asDriver(), beatType: beatType.asDriver(), tempo: tempo.asDriver(), isPlaying: isPlaying.asDriver())
+        /// 5. 시그니처 텍스트
+        /// 이벤트 방출이 중복되므로 타입으로 만들어버림
+        Observable.combineLatest(numeratorText, denomitorText)
+            .subscribe(onNext: {
+                signatureText.accept($0 + "/" + $1)
+            })
+            .disposed(by: disposeBag)
+        
+        return Output(numeratorText: numeratorText.asDriver(), denomitorText: denomitorText.asDriver(), numeratorMaxValue: numeratorMaxValue.asDriver(), beatType: beatType.asDriver(), tempo: tempo.asDriver(), isPlaying: isPlaying.asDriver(), signatureText: signatureText.asDriver())
     }
 }
