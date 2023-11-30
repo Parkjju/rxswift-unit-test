@@ -141,6 +141,44 @@ final class metronomeTests: XCTestCase {
         ])
     }
     
+    func test_시그니처_텍스트_변경() {
+        let signatureText = scheduler.createObserver(String.self)
+        
+        var testInput = retrieveDefaultInputObservable()
+        
+        testInput.denomitorStepperChanged = scheduler.createColdObservable([
+            .next(10, 2),
+            .next(20, 1)
+        ]).asObservable()
+        
+        testInput.numeratorStepperChanged = scheduler.createColdObservable([
+            .next(10, 4),
+            .next(15, 6)
+        ]).asObservable()
+        
+        let testOutput = viewModel.transform(input: testInput)
+        
+        testOutput.signatureText
+            .drive(signatureText)
+            .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        // denomitor: 4 8   4
+        // numerator: 4  6   4
+        // signatureText: 4/8 6/8 6/4 4/4
+        
+        // 눈에 보이지는 않지만 6/4 방출 이후에 빠르게 4/4로 바인딩되는 것임
+        XCTAssertEqual(signatureText.events, [
+            .next(0, "4/4"),
+            .next(10, "4/4"),
+            .next(10, "4/8"),
+            .next(15, "6/8"),
+            .next(20, "6/4"),
+            .next(20, "4/4")
+        ])
+    }
+    
     override func tearDown() {
         disposeBag = DisposeBag()
     }
