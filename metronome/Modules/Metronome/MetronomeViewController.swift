@@ -219,9 +219,9 @@ class MetronomeViewController: UIViewController {
     }
     
     func bindViewModel(){
-        let input = MetronomeViewModel.Input(controlButtonTapped: controlButton.rx.tap.asObservable())
+        let input = MetronomeViewModel.Input(controlButtonTapped: controlButton.rx.tap.asObservable(), numeratorStepperChanged: numeratorStepper.rx.value.asObservable(), denomitorStepperChanged: denomitorStepper.rx.value.asObservable())
         let output = viewModel.transform(input: input)
-        
+
         // signature binding
         output.numeratorText.asObservable().bind(to: numeratorLabel.rx.text).disposed(by: disposeBag)
         output.denomitorText.asObservable().bind(to: denomitorLabel.rx.text).disposed(by: disposeBag)
