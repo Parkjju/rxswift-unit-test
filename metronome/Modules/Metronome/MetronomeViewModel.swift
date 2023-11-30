@@ -21,6 +21,8 @@ class MetronomeViewModel {
 
     struct Input {
         var controlButtonTapped: Observable<Void>
+        var numeratorStepperChanged: Observable<Double>
+        var denomitorStepperChanged: Observable<Double>
     }
     
     struct Output {
@@ -42,6 +44,21 @@ class MetronomeViewModel {
         input.controlButtonTapped
             .subscribe(onNext: {
                 isPlaying.accept(!isPlaying.value)
+            })
+            .disposed(by: disposeBag)
+        
+        /// 2. 스텝퍼 탭 이후 numerator & denomitor 텍스트 변경
+        input.numeratorStepperChanged
+            .map { "\(Int($0))" }
+            .subscribe(onNext: {
+                numeratorText.accept($0)
+            })
+            .disposed(by: disposeBag)
+        
+        input.denomitorStepperChanged
+            .map { "\(Int($0))"}
+            .subscribe(onNext: {
+                denomitorText.accept($0)
             })
             .disposed(by: disposeBag)
         
