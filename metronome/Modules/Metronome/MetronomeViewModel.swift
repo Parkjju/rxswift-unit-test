@@ -29,6 +29,7 @@ class MetronomeViewModel {
     struct Output {
         let numeratorText: Driver<String>
         let denomitorText: Driver<String>
+        let numeratorMaxValue: Driver<Double>
         let beatType: Driver<BeatType>
         let tempo: Driver<Float>
         let isPlaying: Driver<Bool>
@@ -40,6 +41,7 @@ class MetronomeViewModel {
         let beatType = BehaviorRelay<BeatType>(value: .center)
         let tempo = BehaviorRelay<Float>(value: 120)
         let isPlaying = BehaviorRelay<Bool>(value: false)
+        let numeratorMaxValue = BehaviorRelay<Double>(value: 4)
         
         /// 1. 메트로놈 플레이버튼 탭 이벤트
         input.controlButtonTapped
@@ -56,20 +58,28 @@ class MetronomeViewModel {
             })
             .disposed(by: disposeBag)
         
+        /// 3. denomitor stepper 값 변경에 따라 numerator 맥스값도 변경되어야 함
         input.denomitorStepperChanged
             .map { Int($0)}
             .subscribe(onNext: {
                 denomitorText.accept("\(pow(2, $0 + 1))")
+                
+                let maxValue = Double(truncating: pow(2, $0 + 1) as NSNumber)
+                numeratorMaxValue.accept(maxValue)
+                
+                if maxValue < Double(numeratorText.value)! {
+                    numeratorText.accept("\(Int(maxValue))")
+                }
             })
             .disposed(by: disposeBag)
         
-        /// 3. 슬라이더 값 변경에 따라 bpm 값 바인딩
+        /// 4. 슬라이더 값 변경에 따라 bpm 값 바인딩
         input.sliderValueChanged
             .subscribe(onNext: {
                 tempo.accept($0)
             })
             .disposed(by: disposeBag)
         
-        return Output(numeratorText: numeratorText.asDriver(), denomitorText: denomitorText.asDriver(), beatType: beatType.asDriver(), tempo: tempo.asDriver(), isPlaying: isPlaying.asDriver())
+        return Output(numeratorText: numeratorText.asDriver(), denomitorText: denomitorText.asDriver(), numeratorMaxValue: numeratorMaxValue.asDriver(), beatType: beatType.asDriver(), tempo: tempo.asDriver(), isPlaying: isPlaying.asDriver())
     }
 }

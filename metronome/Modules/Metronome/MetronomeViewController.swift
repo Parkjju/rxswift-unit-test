@@ -248,6 +248,9 @@ class MetronomeViewController: UIViewController {
             self.slider.value = $0
         })
         .disposed(by: disposeBag)
+        
+        // denomitor 변경에 따른 numerator 맥스값 바인딩
+        output.numeratorMaxValue.asObservable().bind(to: numeratorStepper.rx.maximumValue).disposed(by: disposeBag)
     }
 }
 
