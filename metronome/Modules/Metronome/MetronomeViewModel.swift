@@ -23,6 +23,7 @@ class MetronomeViewModel {
         var controlButtonTapped: Observable<Void>
         var numeratorStepperChanged: Observable<Double>
         var denomitorStepperChanged: Observable<Double>
+        var sliderValueChanged: Observable<Float>
     }
     
     struct Output {
@@ -56,9 +57,16 @@ class MetronomeViewModel {
             .disposed(by: disposeBag)
         
         input.denomitorStepperChanged
-            .map { "\(Int($0))"}
+            .map { Int($0)}
             .subscribe(onNext: {
-                denomitorText.accept($0)
+                denomitorText.accept("\(pow(2, $0 + 1))")
+            })
+            .disposed(by: disposeBag)
+        
+        /// 3. 슬라이더 값 변경에 따라 bpm 값 바인딩
+        input.sliderValueChanged
+            .subscribe(onNext: {
+                tempo.accept($0)
             })
             .disposed(by: disposeBag)
         
