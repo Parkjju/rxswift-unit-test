@@ -71,13 +71,60 @@ final class metronomeTests: XCTestCase {
         ])
     }
     
+    func test_stepper_탭_이후_numerator속성값이_변경되는지() {
+        let numerator = scheduler.createObserver(String.self)
+        let denomitor = scheduler.createObserver(String.self)
+        
+        var testInput = retrieveDefaultInputObservable()
+        
+        testInput.numeratorStepperChanged = scheduler.createColdObservable([
+            .next(10, 1.0),
+            .next(20, 2.0),
+            .next(30, 4.0)
+        ]).asObservable()
+        
+        testInput.denomitorStepperChanged = scheduler.createColdObservable([
+            .next(10, 1.0),
+            .next(20, 4.0),
+            .next(30, 3.0)
+        ]).asObservable()
+        
+        let testOutput = viewModel.transform(input: testInput)
+        
+        testOutput.numeratorText
+            .drive(numerator)
+            .disposed(by: disposeBag)
+        
+        testOutput.denomitorText
+            .drive(denomitor)
+            .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(numerator.events, [
+            .next(0, "4"),
+            .next(10, "1"),
+            .next(20, "2"),
+            .next(30, "4")
+        ])
+        
+        XCTAssertEqual(denomitor.events, [
+            .next(0, "4"),
+            .next(10, "1"),
+            .next(20, "4"),
+            .next(30, "3")
+        ])
+    }
+    
     override func tearDown() {
         disposeBag = DisposeBag()
     }
     
     func retrieveDefaultInputObservable() -> MetronomeViewModel.Input {
         let controlButton = scheduler.createColdObservable([.next(10, ())])
+        let numeratorChanged = scheduler.createColdObservable([.next(10, Double(1))])
+        let denomitorChanged = scheduler.createColdObservable([.next(10, Double(1))])
         
-        return MetronomeViewModel.Input(controlButtonTapped: controlButton.asObservable())
+        return MetronomeViewModel.Input(controlButtonTapped: controlButton.asObservable(), numeratorStepperChanged: numeratorChanged.asObservable(), denomitorStepperChanged: denomitorChanged.asObservable())
     }
 }
